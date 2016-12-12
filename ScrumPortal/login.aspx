@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Scrum Login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo_user_ico.ico" style="width:16px;height=16px;" />
+    
     <!-- Adding Bootsrtap CSS-->
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
@@ -13,8 +15,9 @@
     <!-- Custom CSS -->
     <link href="Content/custom.css" rel="stylesheet" /> 
 
-    <!-- Adding JavaScript -->    
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <!-- Adding JavaScript -->
+    <script src="jQuery.1.9.1/Content/Scripts/jquery-1.9.1.min.js"></script>   
+    <!--<script src="Scripts/jquery-3.1.1.min.js"></script>-->
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/custom.js"></script>
 

@@ -9,9 +9,16 @@ namespace ScrumPortal
 {
     public partial class home : System.Web.UI.Page
     {
+        private string username;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["UserName"]!=null){
+                username = Session["UserName"].ToString();
+                user_name.InnerText = username;
+            }
+            else
+                user_name.InnerText = "Guest User";
+            
         }
     }
 }

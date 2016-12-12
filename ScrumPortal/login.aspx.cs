@@ -83,7 +83,7 @@ namespace ScrumPortal
         {
             string email = email_signin.Value;
             string psw = psw_signin.Value;
-            int islogin = 0;
+            //int islogin = 0;
 
             //sql connection
             try
@@ -102,14 +102,58 @@ namespace ScrumPortal
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.CommandText = "loginUser";//store procedure name
-
+                    
+                    //input parameters of stored procedure
                     command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;                 
                     command.Parameters.Add("@password", SqlDbType.VarChar).Value = psw;
+                    //output parameters of stored procedure
+                    //get islogin from stored procedure
+                    SqlParameter islogin = new SqlParameter("@islogin", SqlDbType.Int);
+                    islogin.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(islogin);
+                    //get user id from stored procedure
+                    SqlParameter userid = new SqlParameter("@user_id", SqlDbType.Int);
+                    userid.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(userid);
+                    //get users first name from stored procedure
+                    SqlParameter userFname = new SqlParameter("@user_fname", SqlDbType.VarChar);
+                    userFname.Direction = ParameterDirection.Output;
+                    userFname.Size = 100;
+                    command.Parameters.Add(userFname);
+                    //get users last name from stored procedure
+                    SqlParameter userlname = new SqlParameter("@user_lname", SqlDbType.VarChar);
+                    userlname.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(userlname);
+                    userlname.Size = 100;
 
+                    //execute stored procedure "loginUser"
+                    command.ExecuteNonQuery();
 
-                    islogin = Convert.ToInt32(command.ExecuteScalar());
-                    if(islogin==1)
-                        System.Diagnostics.Debug.WriteLine("**** User matched. Successfully signed in ****** ");
+                    //islogin = Convert.ToInt32(command.ExecuteScalar());
+                    
+                    //get islogin
+                    int user_islogin = (int)command.Parameters["@islogin"].Value;
+                    //get user id
+                    int user_id = (int)command.Parameters["@user_id"].Value;
+                    // get user first name
+                    string user_fname = (string)command.Parameters["@user_fname"].Value;
+                    //get user last name              
+                    string user_lname = (string)command.Parameters["@user_lname"].Value;
+                    
+                    
+
+                    if (user_islogin == 1)
+                    {
+                        System.Diagnostics.Debug.WriteLine("**** User matched. Successfully signed in ****** ");                        
+                        System.Diagnostics.Debug.WriteLine("**** User matched. Successfully signed in as: " + user_fname +" : "+user_lname + " ****** ");
+
+                        //Save user id and username in session
+                        Session["UserID"] = user_id;
+                        Session["UserName"] = user_fname + " " + user_lname;
+                        Response.Redirect("home.aspx", false);
+    
+                    }
+                       
                     else
                         System.Diagnostics.Debug.WriteLine("**** No user match. Signing in unsuccessful ****** ");
 

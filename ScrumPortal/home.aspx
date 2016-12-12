@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Scrum Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo_user_ico.ico" style="width:16px;height:16px;" />
+
     <!-- Adding Bootsrtap CSS-->
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
@@ -13,10 +15,12 @@
     <!-- Custom CSS -->
     <link href="Content/custom.css" rel="stylesheet" /> 
 
-    <!-- Adding JavaScript -->    
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <!-- Adding JavaScript -->   
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/custom.js"></script>
+
+  
 </head>
 <body>    
     <nav class="navbar navbar-default " role="navigation">
@@ -43,22 +47,23 @@
         <li class="dropdown" id="task_dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add Task</a></li>
-            <li><a href="#">View Tasks</a></li>
+            <li><a href="#" id="add_task" onclick="javascript:showAddTaskModal()">Add Task</a></li>
+            <li><a href="#" id="view_task">View Tasks</a></li>
             <li class="divider"></li>
-            <li><a href="#">Assign Tasks</a></li>
+            <li><a href="#" id="assign_task">Assign Tasks</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">User Name</a></li>
+          <li><a href="#" id="user_name" runat="server">User Name</a></li>
           <li><i class="fa fa-user-circle" style="font-size:36px"></i></li>
       </ul> 
     </div><!-- /.navbar-collapse -->
   </div>
-</nav> 
+</nav>
+    
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="addtask_modal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -69,6 +74,7 @@
           </div>
           <div class="modal-body">
             <form>
+                
 	            <div class="form-group"> <!-- Name field -->
 		            <label class="control-label " for="name">Name</label>
 		            <input class="form-control" id="name" name="name" type="text"/>
