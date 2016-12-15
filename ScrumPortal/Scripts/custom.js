@@ -1,13 +1,15 @@
 ﻿$(document).ready(
     function () {        
-        //view add task window
-        $('#add_task').click(
-            function () {                
-                $('#addtask_modal').modal('show');
-                }
-        );
+        
+        //add task start date function
+        $('#task_startdate').datepicker({
 
+        });
 
+        //add task end date function
+        $('#task_enddate').datepicker({
+
+        });
 
     });
 
@@ -26,7 +28,9 @@ function ShowPopup() {
     $("#showRegistrationSuccessBtn").click();
 }
 
-function showAddTaskModal(){
+//show add task window
+function showAddTaskModal() {
+    
     $('#addtask_modal').modal('show');
 }
 
