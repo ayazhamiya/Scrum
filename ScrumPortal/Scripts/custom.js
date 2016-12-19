@@ -11,15 +11,30 @@
 
         });
 
+        $('#project_list').datepicker({
+            style: 'btn-info',
+            size: 4
+        });
+
+       
+
+
     });
 
+//show add task window
+function showAddTaskModal() {
+
+    $('#addtask_modal').modal('show');
+}
+
 //funtion to show registration box
-function showRegDiv(){
+function showRegDiv() {
     $('#signinbox').hide(); $('#registerbox').show();
 }
 
+
 //funtion to show signin box
-function showSigninDiv(){
+function showSigninDiv() {
     $('#signinbox').show(); $('#registerbox').hide();
 }
 
@@ -28,11 +43,8 @@ function ShowPopup() {
     $("#showRegistrationSuccessBtn").click();
 }
 
-//show add task window
-function showAddTaskModal() {
-    
-    $('#addtask_modal').modal('show');
-}
+
+
 
 //$("#task_dropdown").on("change", function () {
 //    $modal = $('#myModal');
